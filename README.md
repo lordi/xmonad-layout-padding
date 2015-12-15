@@ -13,7 +13,7 @@ it doesn't exist). Then it can be imported with
 import Padding
 ~~~
 
-The `Padding` module export a two functions: `padding`, which
+The `Padding` module exports two functions: `padding`, which
 will add a padding to all windows, and `paddingSingle`, which will
 only apply a padding if a single window is visible on the workspace.
 Both take two arguments: the first is the amount of padding for the
