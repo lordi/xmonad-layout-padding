@@ -38,6 +38,21 @@ instance LayoutModifier Padding a where
 
     modifierDescription (Padding p q) = "Padding " ++ show p ++ " " ++ show q
 
+-- | If only a single window is present in a layout, surround it by a certain
+-- number of pixels of blank space. First argument is top/bottom, second is
+-- side/side
+paddingSingle :: Int -> Int -> l a -> ModifiedLayout PaddingSingle l a
+paddingSingle p q = ModifiedLayout (PaddingSingle p q)
+
+data PaddingSingle a = PaddingSingle Int Int deriving (Show, Read)
+
+instance LayoutModifier PaddingSingle a where
+
+    pureModifier (PaddingSingle p q) _ _ [(window, rect)] = ([(window, shrinkRect p q rect)], Nothing)
+    pureModifier (PaddingSingle p q) _ _ wrs = (wrs, Nothing)
+
+    modifierDescription (PaddingSingle p q) = "Padding " ++ show p ++ " " ++ show q
+
 shrinkRect :: Int -> Int -> Rectangle -> Rectangle
 shrinkRect p q (Rectangle x y w h) = Rectangle (x+fi q) (y+fi p) (w-2*fi q) (h-2*fi p)
 
