@@ -17,7 +17,7 @@
 -- Xmonad.Layout.Spacing, (c) Brent Yorgey, originally licensed under a
 -- BSD-style license.
 
-module Padding (padding) where
+module Padding (padding, paddingSingle) where
 
 import Graphics.X11 (Rectangle(..))
 import Control.Arrow (second)
